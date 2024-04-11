@@ -34,6 +34,8 @@ class CustomTextFieldWidget extends StatefulWidget {
   final String? countryDialCode;
   final Function(CountryCode countryCode)? onCountryChanged;
   final bool isRequired;
+  final Function()? tap;
+  final bool? readtrue;
 
   const CustomTextFieldWidget({
     super.key,
@@ -64,6 +66,8 @@ class CustomTextFieldWidget extends StatefulWidget {
     this.countryDialCode,
     this.onCountryChanged,
     this.isRequired = false,
+    this.tap, this.readtrue  = false,
+
   });
 
   @override
@@ -83,6 +87,8 @@ class CustomTextFieldWidgetState extends State<CustomTextFieldWidget> {
         SizedBox(height: widget.showTitle ? ResponsiveHelper.isDesktop(context) ? Dimensions.paddingSizeDefault : Dimensions.paddingSizeExtraSmall : 0),
 
         TextField(
+          onTap: widget.tap,
+          readOnly: widget.readtrue!,
           maxLines: widget.maxLines,
           controller: widget.controller,
           focusNode: widget.focusNode,

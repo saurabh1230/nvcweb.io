@@ -1,3 +1,5 @@
+
+
 import 'package:stackfood_multivendor/common/models/product_model.dart';
 
 class OnlineCartModel {
@@ -77,9 +79,7 @@ class OnlineCartModel {
 class Variation {
   String? name;
   Value? values;
-
   Variation({this.name, this.values});
-
   Variation.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     values = json['values'] != null ? Value.fromJson(json['values']) : null;

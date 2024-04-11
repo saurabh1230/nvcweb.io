@@ -38,7 +38,8 @@ class _FooterViewWidgetState extends State<FooterViewWidget> {
       ),
 
       (widget.visibility && ResponsiveHelper.isDesktop(context)) ? Container(
-        color: const Color(0xFF414141),
+        color: Colors.black,
+        // color: const Color(0xFF414141),
         width: context.width,
         margin: const EdgeInsets.only(top: Dimensions.paddingSizeLarge),
         child: Center(child: Column(children: [
@@ -50,10 +51,9 @@ class _FooterViewWidgetState extends State<FooterViewWidget> {
                 const SizedBox(height: Dimensions.paddingSizeExtraLarge),
                 Row(children: [
                   Image.asset(Images.logo, width: 60, height: 40),
-                  Image.asset(Images.logoName, height: 40, width: 100),
+                  // Image.asset(Images.logoName, height: 40, width: 100),
                 ]),
                 const SizedBox(height: Dimensions.paddingSizeSmall),
-
 
                 Text('subscribe_to_out_new_channel_to_get_latest_updates'.tr, style: robotoRegular.copyWith(color: _color, fontSize: Dimensions.fontSizeSmall)),
                 const SizedBox(height: Dimensions.paddingSizeSmall),

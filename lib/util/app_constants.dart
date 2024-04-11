@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 class AppConstants {
   static const String appName = 'StackFood';
   static const double appVersion = 7.3;
-
   static const String fontFamily = 'Roboto';
   static const bool payInWevView = false;
   static const String webHostedUrl = 'https://stackfood-web.6amtech.com';
+  // static const String baseUrl = 'https://lab2.invoidea.in/nvc/public';
 
   static const String baseUrl = 'https://stackfood-admin.6amtech.com';
   static const String categoryUri = '/api/v1/categories';

@@ -52,8 +52,8 @@ class _ChooseLanguageScreenState extends State<ChooseLanguageScreen> {
 
                           !ResponsiveHelper.isDesktop(context) ? Column(children: [
                             Center(child: Image.asset(Images.logo, width: 60)),
-                            const SizedBox(height: Dimensions.paddingSizeSmall),
-                            Center(child: Image.asset(Images.logoName, width: 100)),
+                            // const SizedBox(height: Dimensions.paddingSizeSmall),
+                            // Center(child: Image.asset(Images.logoName, width: 100)),
                           ]) : const SizedBox(),
 
                           const SizedBox(height: 30),

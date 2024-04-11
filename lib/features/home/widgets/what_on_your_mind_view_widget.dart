@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shimmer_animation/shimmer_animation.dart';
 
+import '../../../common/widgets/hover_widgets/hover_zoom_widget.dart';
+
 class WhatOnYourMindViewWidget extends StatelessWidget {
   const WhatOnYourMindViewWidget({super.key});
 
@@ -74,47 +76,50 @@ class WhatOnYourMindViewWidget extends StatelessWidget {
 
               return Padding(
                 padding: const EdgeInsets.only(bottom: Dimensions.paddingSizeSmall, right: Dimensions.paddingSizeSmall),
-                child: Container(
-                  width: ResponsiveHelper.isMobile(context) ? 70 : 100,
-                  height: ResponsiveHelper.isMobile(context) ? 70 : 100,
-                  decoration: BoxDecoration(
-                      color: Colors.transparent,
-                      borderRadius: BorderRadius.circular(Dimensions.radiusSmall)
-                  ),
-                  child: CustomInkWellWidget(
-                    onTap: () => Get.toNamed(RouteHelper.getCategoryProductRoute(
-                      categoryController.categoryList![index].id, categoryController.categoryList![index].name!,
-                    )),
-                    radius: Dimensions.radiusSmall,
-                    child: Padding(
-                      padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
-                      child: Column(children: [
-                        Container(
-                          decoration: BoxDecoration(
+                child: HoverZoom(
+                  child: Container(
+                    width: ResponsiveHelper.isMobile(context) ? 70 : 100,
+                    height: ResponsiveHelper.isMobile(context) ? 70 : 100,
+                    decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        shape: BoxShape.circle,
+                        // borderRadius: BorderRadius.circular(Dimensions.radiusSmall)
+                    ),
+                    child: CustomInkWellWidget(
+                      onTap: () => Get.toNamed(RouteHelper.getCategoryProductRoute(
+                        categoryController.categoryList![index].id, categoryController.categoryList![index].name!,
+                      )),
+                      radius: Dimensions.radiusSmall,
+                      child: Padding(
+                        padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
+                        child: Column(children: [
+                          Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+                                color: Theme.of(context).cardColor,
+                                boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1)]
+                            ),
+                            child: ClipRRect(
                               borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                              color: Theme.of(context).cardColor,
-                              boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1)]
-                          ),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-                            child: CustomImageWidget(
-                              image: '${Get.find<SplashController>().configModel!.baseUrls!.categoryImageUrl}/${categoryController.categoryList![index].image}',
-                              height: ResponsiveHelper.isMobile(context) ? 70 : 100, width: ResponsiveHelper.isMobile(context) ? 70 : 100, fit: BoxFit.cover,
+                              child: CustomImageWidget(
+                                image: '${Get.find<SplashController>().configModel!.baseUrls!.categoryImageUrl}/${categoryController.categoryList![index].image}',
+                                height: ResponsiveHelper.isMobile(context) ? 70 : 100, width: ResponsiveHelper.isMobile(context) ? 70 : 100, fit: BoxFit.cover,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(height: ResponsiveHelper.isMobile(context) ? Dimensions.paddingSizeDefault : Dimensions.paddingSizeLarge),
+                          SizedBox(height: ResponsiveHelper.isMobile(context) ? Dimensions.paddingSizeDefault : Dimensions.paddingSizeLarge),
 
-                        Expanded(child: Text(
-                          categoryController.categoryList![index].name!,
-                          style: robotoMedium.copyWith(
-                            fontSize: Dimensions.fontSizeSmall,
-                            // color:Theme.of(context).textTheme.bodyMedium!.color,
-                          ),
-                          maxLines: 1, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
-                        )),
+                          Expanded(child: Text(
+                            categoryController.categoryList![index].name!,
+                            style: robotoMedium.copyWith(
+                              fontSize: Dimensions.fontSizeSmall,
+                              // color:Theme.of(context).textTheme.bodyMedium!.color,
+                            ),
+                            maxLines: 1, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center,
+                          )),
 
-                      ]),
+                        ]),
+                      ),
                     ),
                   ),
                 ),

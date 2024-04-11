@@ -1,4 +1,5 @@
 import 'package:stackfood_multivendor/common/widgets/custom_ink_well_widget.dart';
+import 'package:stackfood_multivendor/common/widgets/hover_widgets/hover_zoom_widget.dart';
 import 'package:stackfood_multivendor/features/home/widgets/icon_with_text_row_widget.dart';
 import 'package:stackfood_multivendor/features/restaurant/controllers/restaurant_controller.dart';
 import 'package:stackfood_multivendor/features/splash/controllers/splash_controller.dart';
@@ -64,155 +65,157 @@ class RestaurantsViewWidget extends StatelessWidget {
 
   Widget restaurantView(BuildContext context, Restaurant restaurant) {
     bool isAvailable = restaurant.open == 1 && restaurant.active!;
-    return Container(
-      decoration: BoxDecoration(
-        color: Theme.of(context).cardColor,
-        borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
-      ),
-      child: CustomInkWellWidget(
-        onTap: () {
-          if(restaurant.restaurantStatus == 1){
-            Get.toNamed(RouteHelper.getRestaurantRoute(restaurant.id), arguments: RestaurantScreen(restaurant: restaurant));
-          }else if(restaurant.restaurantStatus == 0){
-            showCustomSnackBar('restaurant_is_not_available'.tr);
-          }
-        },
-        radius: Dimensions.radiusDefault,
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
-              ),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
-                child: CustomImageWidget(
-                  image: '${Get.find<SplashController>().configModel!.baseUrls!.restaurantCoverPhotoUrl}'
-                      '/${restaurant.coverPhoto}',
-                  fit: BoxFit.cover, height: 93, width: double.infinity,
+    return HoverZoom(
+      child: Container(
+        decoration: BoxDecoration(
+          color: Theme.of(context).cardColor,
+          borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+        ),
+        child: CustomInkWellWidget(
+          onTap: () {
+            if(restaurant.restaurantStatus == 1){
+              Get.toNamed(RouteHelper.getRestaurantRoute(restaurant.id), arguments: RestaurantScreen(restaurant: restaurant));
+            }else if(restaurant.restaurantStatus == 0){
+              showCustomSnackBar('restaurant_is_not_available'.tr);
+            }
+          },
+          radius: Dimensions.radiusDefault,
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                decoration: const BoxDecoration(
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
+                ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
+                  child: CustomImageWidget(
+                    image: '${Get.find<SplashController>().configModel!.baseUrls!.restaurantCoverPhotoUrl}'
+                        '/${restaurant.coverPhoto}',
+                    fit: BoxFit.cover, height: 93, width: double.infinity,
+                  ),
                 ),
               ),
-            ),
-
-            !isAvailable ? Positioned(top: 10, left: 10, child: Container(
-              decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.error.withOpacity(0.5),
-                borderRadius: BorderRadius.circular(Dimensions.radiusLarge)
-              ),
-              padding: EdgeInsets.symmetric(horizontal: Dimensions.fontSizeExtraLarge, vertical: Dimensions.paddingSizeExtraSmall),
-              child: Row(children: [
-                Icon(Icons.access_time, size: 12, color: Theme.of(context).cardColor),
-                const SizedBox(width: Dimensions.paddingSizeExtraSmall),
-
-                Text('closed_now'.tr, style: robotoMedium.copyWith(color: Theme.of(context).cardColor, fontSize: Dimensions.fontSizeSmall)),
-              ]),
-            )) : const SizedBox(),
-
-            Positioned(
-              top: 60, left: 10, right: 0,
-              child: Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    height: 70, width: 70,
-                    decoration:  BoxDecoration(
-                      color: Theme.of(context).cardColor,
-                      borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
-                      child: CustomImageWidget(
-                        image: '${Get.find<SplashController>().configModel!.baseUrls!.restaurantImageUrl}'
-                            '/${restaurant.logo}',
-                        fit: BoxFit.cover, height: 70, width: 70,
+      
+              !isAvailable ? Positioned(top: 10, left: 10, child: Container(
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.error.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(Dimensions.radiusLarge)
+                ),
+                padding: EdgeInsets.symmetric(horizontal: Dimensions.fontSizeExtraLarge, vertical: Dimensions.paddingSizeExtraSmall),
+                child: Row(children: [
+                  Icon(Icons.access_time, size: 12, color: Theme.of(context).cardColor),
+                  const SizedBox(width: Dimensions.paddingSizeExtraSmall),
+      
+                  Text('closed_now'.tr, style: robotoMedium.copyWith(color: Theme.of(context).cardColor, fontSize: Dimensions.fontSizeSmall)),
+                ]),
+              )) : const SizedBox(),
+      
+              Positioned(
+                top: 60, left: 10, right: 0,
+                child: Column(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(2),
+                      height: 70, width: 70,
+                      decoration:  BoxDecoration(
+                        color: Theme.of(context).cardColor,
+                        borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                      ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(Dimensions.radiusSmall),
+                        child: CustomImageWidget(
+                          image: '${Get.find<SplashController>().configModel!.baseUrls!.restaurantImageUrl}'
+                              '/${restaurant.logo}',
+                          fit: BoxFit.cover, height: 70, width: 70,
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeSmall),
-
-                  Text(
-                    restaurant.name!,
-                    style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
-                    maxLines: 1, overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-
-                  Text(
-                    restaurant.address!,
-                    style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).disabledColor),
-                    maxLines: 1, overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: Dimensions.paddingSizeExtraSmall),
-
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      IconWithTextRowWidget(
-                        icon: Icons.star_border, text: restaurant.avgRating.toString(),
-                        style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
-                      ),
-
-                      restaurant.freeDelivery! ? Padding(
-                        padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
-                        child: ImageWithTextRowWidget(
-                          widget: Image.asset(Images.deliveryIcon, height: 20, width: 20),
-                          text: 'free'.tr,
+                    const SizedBox(height: Dimensions.paddingSizeSmall),
+      
+                    Text(
+                      restaurant.name!,
+                      style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeSmall),
+                      maxLines: 1, overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+      
+                    Text(
+                      restaurant.address!,
+                      style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).disabledColor),
+                      maxLines: 1, overflow: TextOverflow.ellipsis,
+                    ),
+                    const SizedBox(height: Dimensions.paddingSizeExtraSmall),
+      
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconWithTextRowWidget(
+                          icon: Icons.star_border, text: restaurant.avgRating.toString(),
+                          style: robotoBold.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
+                        ),
+      
+                        restaurant.freeDelivery! ? Padding(
+                          padding: const EdgeInsets.only(left: Dimensions.paddingSizeDefault),
+                          child: ImageWithTextRowWidget(
+                            widget: Image.asset(Images.deliveryIcon, height: 20, width: 20),
+                            text: 'free'.tr,
+                            style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
+                          ),
+                        ) : const SizedBox(),
+                        const SizedBox(width: Dimensions.paddingSizeDefault),
+      
+                        IconWithTextRowWidget(
+                          icon: Icons.access_time_outlined, text: '${restaurant.deliveryTime}',
                           style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
                         ),
-                      ) : const SizedBox(),
-                      const SizedBox(width: Dimensions.paddingSizeDefault),
-
-                      IconWithTextRowWidget(
-                        icon: Icons.access_time_outlined, text: '${restaurant.deliveryTime}',
-                        style: robotoRegular.copyWith(fontSize: Dimensions.fontSizeExtraSmall),
-                      ),
-
-                    ],
-                  ),
-                ],
-              ),
-            ),
-
-            Positioned(
-              top: Dimensions.paddingSizeSmall, right: Dimensions.paddingSizeSmall,
-              child: GetBuilder<FavouriteController>(builder: (favouriteController) {
-                bool isWished = favouriteController.wishRestIdList.contains(restaurant.id);
-                return InkWell(
-                  onTap: () {
-                    if(Get.find<AuthController>().isLoggedIn()) {
-                      isWished ? favouriteController.removeFromFavouriteList(restaurant.id, true)
-                          : favouriteController.addToFavouriteList(null, restaurant, true);
-                    }else {
-                      showCustomSnackBar('you_are_not_logged_in'.tr);
-                    }
-                  },
-                  child: Icon(
-                    Icons.favorite,  size: 20,
-                    color: isWished ? Theme.of(context).primaryColor : Theme.of(context).primaryColor.withOpacity(0.4),
-                  ),
-                );
-              }),
-            ),
-
-            Positioned(
-              top: 73, right: 5,
-              child: Container(
-                height: 23,
-                decoration: BoxDecoration(
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
-                  color: Theme.of(context).cardColor,
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
-                child: Center(
-                  child: Text('${Get.find<RestaurantController>().getRestaurantDistance(
-                    LatLng(double.parse(restaurant.latitude!), double.parse(restaurant.longitude!)),
-                  ).toStringAsFixed(2)} ${'km'.tr}',
-                      style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).primaryColor)),
+      
+                      ],
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+      
+              Positioned(
+                top: Dimensions.paddingSizeSmall, right: Dimensions.paddingSizeSmall,
+                child: GetBuilder<FavouriteController>(builder: (favouriteController) {
+                  bool isWished = favouriteController.wishRestIdList.contains(restaurant.id);
+                  return InkWell(
+                    onTap: () {
+                      if(Get.find<AuthController>().isLoggedIn()) {
+                        isWished ? favouriteController.removeFromFavouriteList(restaurant.id, true)
+                            : favouriteController.addToFavouriteList(null, restaurant, true);
+                      }else {
+                        showCustomSnackBar('you_are_not_logged_in'.tr);
+                      }
+                    },
+                    child: Icon(
+                      Icons.favorite,  size: 20,
+                      color: isWished ? Theme.of(context).primaryColor : Theme.of(context).primaryColor.withOpacity(0.4),
+                    ),
+                  );
+                }),
+              ),
+      
+              Positioned(
+                top: 73, right: 5,
+                child: Container(
+                  height: 23,
+                  decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(Dimensions.radiusDefault), topRight: Radius.circular(Dimensions.radiusDefault)),
+                    color: Theme.of(context).cardColor,
+                  ),
+                  padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeExtraSmall),
+                  child: Center(
+                    child: Text('${Get.find<RestaurantController>().getRestaurantDistance(
+                      LatLng(double.parse(restaurant.latitude!), double.parse(restaurant.longitude!)),
+                    ).toStringAsFixed(2)} ${'km'.tr}',
+                        style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeExtraSmall, color: Theme.of(context).primaryColor)),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -40,8 +40,8 @@ class SignUpScreenState extends State<SignUpScreen> {
                 ) : const SizedBox(),
 
                 Image.asset(Images.logo, width: 60),
-                const SizedBox(height: Dimensions.paddingSizeSmall),
-                Image.asset(Images.logoName, width: 100),
+                // const SizedBox(height: Dimensions.paddingSizeSmall),
+                // Image.asset(Images.logoName, width: 100),
                 const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
                 Align(

@@ -49,16 +49,17 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
       physics: const AlwaysScrollableScrollPhysics(),
       slivers: [
 
-        const SliverToBoxAdapter(
-          child: Center(child: SizedBox(width: Dimensions.webMaxWidth,
-              child: WhatOnYourMindViewWidget()),
-          ),
-        ),
+
 
         SliverToBoxAdapter(child: GetBuilder<HomeController>(builder: (bannerController) {
           return bannerController.bannerImageList == null ? WebBannerViewWidget(homeController: bannerController)
               : bannerController.bannerImageList!.isEmpty ? const SizedBox() : WebBannerViewWidget(homeController: bannerController);
         })),
+        const SliverToBoxAdapter(
+          child: Center(child: SizedBox(width: Dimensions.webMaxWidth,
+              child: WhatOnYourMindViewWidget()),
+          ),
+        ),
 
 
         SliverToBoxAdapter(
@@ -82,7 +83,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
 
                 isLogin ? const PopularRestaurantsViewWidget(isRecentlyViewed: true) : const SizedBox(),
 
-                const WebLocationAndReferBannerViewWidget(),
+                // const WebLocationAndReferBannerViewWidget(),
 
                 _configModel!.newRestaurant == 1 ? const WebNewOnStackFoodViewWidget(isLatest: true) : const SizedBox(),
 

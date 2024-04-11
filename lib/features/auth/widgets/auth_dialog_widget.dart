@@ -52,8 +52,8 @@ class AuthDialogWidgetState extends State<AuthDialogWidget>  with SingleTickerPr
             ),
 
             Image.asset(Images.logo, width: 60),
-            const SizedBox(height: Dimensions.paddingSizeSmall),
-            Image.asset(Images.logoName, width: 80),
+            // const SizedBox(height: Dimensions.paddingSizeSmall),
+            // Image.asset(Images.logoName, width: 80),
             const SizedBox(height: Dimensions.paddingSizeExtraLarge),
 
 

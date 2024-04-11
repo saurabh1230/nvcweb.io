@@ -34,9 +34,11 @@ class BottomButton extends StatelessWidget {
           buttonText: 'user_current_location'.tr,
           onPressed: () async {
             _checkPermission(() async {
+              // Get.find<ProfileController>().setForceFullyUserEmpty();
+              // Get.find<LocationController>().saveAddressAndNavigate(address, fromSignUp, route, route != null, ResponsiveHelper.isDesktop(Get.context));
               Get.dialog(const CustomLoaderWidget(), barrierDismissible: false);
               AddressModel address = await Get.find<LocationController>().getCurrentLocation(true);
-              ZoneResponseModel response = await Get.find<LocationController>().getZone(address.latitude, address.longitude, false);
+              ZoneResponseModel response = await Get.find<LocationController>().getZone(/*address.latitude,*/"28.549280", "77.258003"/*address.longitude*/, false);
               if(response.isSuccess) {
                 if(!Get.find<AuthController>().isGuestLoggedIn() || !Get.find<AuthController>().isLoggedIn()) {
                   Get.find<AuthController>().guestLogin().then((response) {
@@ -96,7 +98,6 @@ class BottomButton extends StatelessWidget {
             )),
           ]),
         ),
-
       ]),
     )));
   }

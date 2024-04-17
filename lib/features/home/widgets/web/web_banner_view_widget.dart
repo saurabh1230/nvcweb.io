@@ -26,13 +26,14 @@ class WebBannerViewWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(Dimensions.paddingSizeLarge),
+
+      // padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
       alignment: Alignment.center,
       child: Column(
         children: [
           homeController.bannerImageList != null
               ? SizedBox(
-            width: 1210,
+            // width: 1210,
             height: 225,
             child: CarouselSlider.builder(
               itemCount: homeController.bannerImageList!.length,

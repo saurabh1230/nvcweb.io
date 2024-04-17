@@ -193,7 +193,7 @@ class SearchScreenState extends State<SearchScreen> {
 
                   const SizedBox(height: Dimensions.paddingSizeLarge),
 
-                  GetBuilder<CuisineController>(builder: (cuisineController) {
+                  /*GetBuilder<CuisineController>(builder: (cuisineController) {
                     return (cuisineController.cuisineModel != null && cuisineController.cuisineModel!.cuisines!.isEmpty) ? const SizedBox() : Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -236,7 +236,7 @@ class SearchScreenState extends State<SearchScreen> {
                       ],
                     );
                   }
-                  ),
+                  ),*/
 
 
                 ])),

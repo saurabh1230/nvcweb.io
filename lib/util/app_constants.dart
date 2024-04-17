@@ -9,7 +9,6 @@ class AppConstants {
   static const bool payInWevView = false;
   static const String webHostedUrl = 'https://stackfood-web.6amtech.com';
   // static const String baseUrl = 'https://lab2.invoidea.in/nvc/public';
-
   static const String baseUrl = 'https://stackfood-admin.6amtech.com';
   static const String categoryUri = '/api/v1/categories';
   static const String bannerUri = '/api/v1/banners';

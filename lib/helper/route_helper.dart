@@ -139,18 +139,18 @@ class RouteHelper {
   static const String guestTrackOrderScreen = '/guest-track-order-screen';
 
   static String getInitialRoute({bool fromSplash = false}) => '$initial?from-splash=$fromSplash';
-  static String getSplashRoute(NotificationBodyModel? body, DeepLinkBody? linkBody) {
-    String data = 'null';
-    String linkData = 'null';
-    if(body != null) {
+  static String getSplashRoute(/*NotificationBodyModel? body, DeepLinkBody? linkBody*/) {
+    /*String data = 'null';
+    String linkData = 'null';*/
+ /*   if(body != null) {
       List<int> encoded = utf8.encode(jsonEncode(body.toJson()));
       data = base64Encode(encoded);
     }
     if(linkBody != null) {
       List<int> encoded = utf8.encode(jsonEncode(linkBody.toJson()));
       linkData = base64Encode(encoded);
-    }
-    return '$splash?data=$data&link=$linkData';
+    }*/
+    return '$splash';
   }
   static String getLanguageRoute(String page) => '$language?page=$page';
   static String getOnBoardingRoute() => onBoarding;

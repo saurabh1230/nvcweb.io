@@ -100,8 +100,8 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return GetBuilder<LocalizationController>(builder: (localizationController) {
       return Scaffold(
-        appBar: ResponsiveHelper.isDesktop(context) ? const WebMenuBar() : null,
-        endDrawer: const MenuDrawerWidget(), endDrawerEnableOpenDragGesture: false,
+        appBar: const WebMenuBar(),
+        // endDrawer: const MenuDrawerWidget(), endDrawerEnableOpenDragGesture: false,
         backgroundColor: Theme.of(context).colorScheme.background,
         body: SafeArea(
           top: (Get.find<SplashController>().configModel!.theme == 2),
@@ -132,13 +132,12 @@ class _HomeScreenState extends State<HomeScreen> {
               controller: _scrollController,
               physics: const AlwaysScrollableScrollPhysics(),
               slivers: [
-
-                /// App Bar
+                /// App Bar //
                 SliverAppBar(
                   pinned: true, toolbarHeight: 10, 
                   expandedHeight: ResponsiveHelper.isTab(context) ? 72 : 
                   GetPlatform.isWeb ? 72 : 50,
-                  floating: false, elevation: 0, /*automaticallyImplyLeading: false,*/
+                  floating: false, elevation: 0, automaticallyImplyLeading: false,
                   backgroundColor: ResponsiveHelper.isDesktop(context) ? Colors.transparent : Theme.of(context).primaryColor,
                   flexibleSpace: FlexibleSpaceBar(
                       titlePadding: EdgeInsets.zero,
@@ -226,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
 
                 // Search Button
-                SliverPersistentHeader(
+             /*   SliverPersistentHeader(
                   pinned: true,
                   delegate: SliverDelegate(height: 60, child: Center(child: Stack(
                     children: [
@@ -263,7 +262,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       )
                     ],
                   ))),
-                ),
+                ),*/
 
                 SliverToBoxAdapter(
                   child: Center(child: SizedBox(
@@ -284,7 +283,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
                       _configModel!.mostReviewedFoods == 1 ?  const BestReviewItemViewWidget(isPopular: false) : const SizedBox(),
 
-                      const CuisineViewWidget(),
+                      // const CuisineViewWidget(),
 
                       _configModel.popularRestaurant == 1 ? const PopularRestaurantsViewWidget() : const SizedBox(),
 

@@ -75,7 +75,7 @@ class _WebHomeScreenState extends State<WebHomeScreen> {
 
                 _configModel!.popularFood == 1 ?  const BestReviewItemViewWidget(isPopular: false) : const SizedBox(),
 
-                const WebCuisineViewWidget(),
+                // const WebCuisineViewWidget(),
 
                 const PopularRestaurantsViewWidget(),
 

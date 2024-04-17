@@ -28,10 +28,10 @@ class WhatOnYourMindViewWidget extends StatelessWidget {
             right: Get.find<LocalizationController>().isLtr ? 0 : Dimensions.paddingSizeExtraSmall,
             bottom: ResponsiveHelper.isMobile(context) ? Dimensions.paddingSizeDefault : Dimensions.paddingSizeOverLarge,
           ),
-          child: ResponsiveHelper.isDesktop(context) ? Text('what_on_your_mind'.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w600)) :
+          child: ResponsiveHelper.isDesktop(context) ? Text('Category'.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w600)) :
           Padding(padding: const EdgeInsets.only(left: Dimensions.paddingSizeSmall, right: Dimensions.paddingSizeDefault),
             child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-              Text('what_on_your_mind'.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w600)),
+              Text('Category'.tr, style: robotoMedium.copyWith(fontSize: Dimensions.fontSizeLarge, fontWeight: FontWeight.w600)),
               ArrowIconButtonWidget(onTap: () => Get.toNamed(RouteHelper.getCategoryRoute())),
             ],
             ),
@@ -94,16 +94,18 @@ class WhatOnYourMindViewWidget extends StatelessWidget {
                         padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
                         child: Column(children: [
                           Container(
+                            height: ResponsiveHelper.isMobile(context) ? 60 : 90, width: ResponsiveHelper.isMobile(context) ? 60 : 90,
+                            padding: const EdgeInsets.all(Dimensions.paddingSizeSmall),
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                                 color: Theme.of(context).cardColor,
                                 boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1)]
                             ),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
+                            child: ClipOval(
+                              // borderRadius: BorderRadius.circular(Dimensions.radiusDefault),
                               child: CustomImageWidget(
                                 image: '${Get.find<SplashController>().configModel!.baseUrls!.categoryImageUrl}/${categoryController.categoryList![index].image}',
-                                height: ResponsiveHelper.isMobile(context) ? 70 : 100, width: ResponsiveHelper.isMobile(context) ? 70 : 100, fit: BoxFit.cover,
+                                 fit: BoxFit.cover,
                               ),
                             ),
                           ),

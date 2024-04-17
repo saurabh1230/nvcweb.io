@@ -3,12 +3,9 @@ import 'dart:io';
 import 'package:stackfood_multivendor/features/auth/controllers/auth_controller.dart';
 import 'package:stackfood_multivendor/features/cart/controllers/cart_controller.dart';
 import 'package:stackfood_multivendor/features/language/controllers/localization_controller.dart';
-import 'package:stackfood_multivendor/features/notification/domain/models/notification_body_model.dart';
 import 'package:stackfood_multivendor/features/splash/controllers/splash_controller.dart';
 import 'package:stackfood_multivendor/features/splash/controllers/theme_controller.dart';
 import 'package:stackfood_multivendor/features/favourite/controllers/favourite_controller.dart';
-import 'package:stackfood_multivendor/features/splash/domain/models/deep_link_body.dart';
-import 'package:stackfood_multivendor/helper/notification_helper.dart';
 import 'package:stackfood_multivendor/helper/responsive_helper.dart';
 import 'package:stackfood_multivendor/helper/route_helper.dart';
 import 'package:stackfood_multivendor/theme/dark_theme.dart';
@@ -16,23 +13,16 @@ import 'package:stackfood_multivendor/theme/light_theme.dart';
 import 'package:stackfood_multivendor/util/app_constants.dart';
 import 'package:stackfood_multivendor/util/messages.dart';
 import 'package:stackfood_multivendor/common/widgets/cookies_view_widget.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:meta_seo/meta_seo.dart';
 import 'package:url_strategy/url_strategy.dart';
 import 'helper/get_di.dart' as di;
 
-final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+// final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
 
 Future<void> main() async {
-  if(ResponsiveHelper.isMobilePhone()) {
+  if(ResponsiveHelper.isWeb()) {
     HttpOverrides.global = MyHttpOverrides();
   }
   setPathUrlStrategy();
@@ -48,58 +38,58 @@ Future<void> main() async {
   //   return true;
   // };
 
-  DeepLinkBody? linkBody;
+  // DeepLinkBody? linkBody;
 
-  if(GetPlatform.isWeb) {
-    await Firebase.initializeApp(options: const FirebaseOptions(
-      apiKey: 'AIzaSyCeaw_gVN0iQwFHyuF8pQ6PbVDmSVQw8AY',
-      appId: '1:1049699819506:web:a4b5e3bedc729aab89956b',
-      messagingSenderId: '1049699819506',
-      projectId: 'stackfood-bd3ee',
-    ));
-    MetaSEO().config();
-  }else {
-    await Firebase.initializeApp();
-
-    // try {
-    //   String initialLink = await getInitialLink();
-    //   print('======initial link ===>  $initialLink');
-    //   if(initialLink != null) {
-    //     _linkBody = LinkConverter.convertDeepLink(initialLink);
-    //   }
-    // } on PlatformException {}
-  }
+  // if(GetPlatform.isWeb) {
+  //   await Firebase.initializeApp(options: const FirebaseOptions(
+  //     apiKey: 'AIzaSyCeaw_gVN0iQwFHyuF8pQ6PbVDmSVQw8AY',
+  //     appId: '1:1049699819506:web:a4b5e3bedc729aab89956b',
+  //     messagingSenderId: '1049699819506',
+  //     projectId: 'stackfood-bd3ee',
+  //   ));
+  //   MetaSEO().config();
+  // }else {
+  //   await Firebase.initializeApp();
+  //
+  //   // try {
+  //   //   String initialLink = await getInitialLink();
+  //   //   print('======initial link ===>  $initialLink');
+  //   //   if(initialLink != null) {
+  //   //     _linkBody = LinkConverter.convertDeepLink(initialLink);
+  //   //   }
+  //   // } on PlatformException {}
+  // }
 
   Map<String, Map<String, String>> languages = await di.init();
 
-  NotificationBodyModel? body;
-  try {
-    if (GetPlatform.isMobile) {
-      final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
-      if (remoteMessage != null) {
-        body = NotificationHelper.convertNotification(remoteMessage.data);
-      }
-      await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
-      FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
-    }
-  }catch(_) {}
+  // NotificationBodyModel? body;
+  // try {
+  //   if (GetPlatform.isMobile) {
+  //     final RemoteMessage? remoteMessage = await FirebaseMessaging.instance.getInitialMessage();
+  //     if (remoteMessage != null) {
+  //       body = NotificationHelper.convertNotification(remoteMessage.data);
+  //     }
+  //     await NotificationHelper.initialize(flutterLocalNotificationsPlugin);
+  //     FirebaseMessaging.onBackgroundMessage(myBackgroundMessageHandler);
+  //   }
+  // }catch(_) {}
 
-  if (ResponsiveHelper.isWeb()) {
-    await FacebookAuth.instance.webAndDesktopInitialize(
-      appId: "452131619626499",
-      cookie: true,
-      xfbml: true,
-      version: "v13.0",
-    );
-  }
-  runApp(MyApp(languages: languages, body: body, linkBody: linkBody));
+  // if (ResponsiveHelper.isWeb()) {
+  //   await FacebookAuth.instance.webAndDesktopInitialize(
+  //     appId: "452131619626499",
+  //     cookie: true,
+  //     xfbml: true,
+  //     version: "v13.0",
+  //   );
+  // }
+  runApp(MyApp(languages: languages,/* linkBody: linkBody*/));
 }
 
 class MyApp extends StatefulWidget {
   final Map<String, Map<String, String>>? languages;
-  final NotificationBodyModel? body;
-  final DeepLinkBody? linkBody;
-  const MyApp({super.key, required this.languages, required this.body, required this.linkBody});
+/*  final NotificationBodyModel? body;*/
+  // final DeepLinkBody? linkBody;
+  const MyApp({super.key, required this.languages, /*required this.body,*/ /*required this.linkBody*/});
 
   @override
   State<MyApp> createState() => _MyAppState();
@@ -110,7 +100,6 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-
     _route();
   }
 
@@ -127,7 +116,7 @@ class _MyAppState extends State<MyApp> {
     Get.find<SplashController>().getConfigData().then((bool isSuccess) async {
       if (isSuccess) {
         if (Get.find<AuthController>().isLoggedIn()) {
-          Get.find<AuthController>().updateToken();
+          // Get.find<AuthController>().updateToken();
           await Get.find<FavouriteController>().getFavouriteList();
         }
       }
@@ -151,7 +140,7 @@ class _MyAppState extends State<MyApp> {
             locale: localizeController.locale,
             translations: Messages(languages: widget.languages),
             fallbackLocale: Locale(AppConstants.languages[0].languageCode!, AppConstants.languages[0].countryCode),
-            initialRoute: GetPlatform.isWeb ? RouteHelper.getInitialRoute() : RouteHelper.getSplashRoute(widget.body, widget.linkBody),
+            initialRoute: GetPlatform.isWeb ? RouteHelper.getInitialRoute() : RouteHelper.getSplashRoute(/*widget.body*//* widget.linkBody*/),
             getPages: RouteHelper.routes,
 
             defaultTransition: Transition.topLevel,

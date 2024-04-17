@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <base href="/">
+<!--  <base href="/">-->
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -19,7 +19,7 @@
   <meta name="google-signin-client_id" content="1049699819506-r9agjij7oigjssbffc2g6i2glegb21io.apps.googleusercontent.com">
   <script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"></script>
 
-  <title>StackFood</title>
+  <title>NonVegCity</title>
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" type="text/css" href="style.css">
 
@@ -33,7 +33,7 @@
        application. For more information, see:
        https://developers.google.com/web/fundamentals/primers/service-workers -->
 
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_MAP_KEY"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXlTk9vlWMTCrcGHi8oMK1BriN3dNzFhU"></script>
 <!--  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>-->
 
   <script>
@@ -72,62 +72,86 @@
   </script>
 
   <!-- Preloader -->
-  <div class="preloader">
-    <div class="preloader-container">
-      <!-- <img width="80" class="preloader-img" src="assets/img/preloader.png" alt=""> -->
-      <div id="animation-container">
-        <img width="80" src="assets/img/1.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/2.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/3.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/4.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/5.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/6.png" class="animation-image" alt="" />
-        <img width="80" src="assets/img/7.png" class="animation-image" alt="" />
-      </div>
-      <div class="loader"></div>
-    </div>
+<!--  <div class="preloader">-->
+<!--    <div class="preloader-container">-->
+<!--      &lt;!&ndash; <img width="80" class="preloader-img" src="assets/img/preloader.png" alt=""> &ndash;&gt;-->
+<!--      <div id="animation-container">-->
+<!--        <img width="80" src="assets/img/1.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/2.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/3.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/4.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/5.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/6.png" class="animation-image" alt="" />-->
+<!--        <img width="80" src="assets/img/7.png" class="animation-image" alt="" />-->
+<!--      </div>-->
+<!--      <div class="loader"></div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--  &lt;!&ndash; Header &ndash;&gt;-->
+<!--  <header class="header">-->
+<!--    <div class="header-container d-flex align-items-center justify-content-between">-->
+<!--      <div class="header-start d-flex gap-5 align-items-center">-->
+<!--        <img class="logo" src="assets/img/logo.png" alt="">-->
+<!--        <div class="placeholder placeholder-wide"></div>-->
+<!--        <div class="d-flex align-items-center gap-4">-->
+<!--          <div class="placeholder"></div>-->
+<!--          <div class="placeholder"></div>-->
+<!--          <div class="placeholder"></div>-->
+<!--          <div class="placeholder"></div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="header-end d-flex align-items-center gap-5">-->
+<!--        <div class="placeholder"></div>-->
+<!--        <div class="d-flex align-items-center gap-4">-->
+<!--          <div class="placeholder"></div>-->
+<!--          <img src="assets/img/icon-1.svg" class="svg" alt="">-->
+<!--          <img src="assets/img/icon-2.svg" class="svg" alt="">-->
+<!--          <img src="assets/img/icon-3.svg" class="svg" alt="">-->
+<!--          <img src="assets/img/icon-4.svg" class="svg" alt="">-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </header>-->
+<!--  &lt;!&ndash; Script Goes Here &ndash;&gt;-->
+<!--  <script>-->
+<!--        document.addEventListener("DOMContentLoaded", function () {-->
+<!--        var images = document.querySelectorAll(".animation-image");-->
+<!--        var currentIndex = 0;-->
+<!--        function cycleImages() {-->
+<!--            var currentImage = images[currentIndex];-->
+<!--            var nextIndex = (currentIndex + 1) % images.length;-->
+<!--            var nextImage = images[nextIndex];-->
+<!--            currentImage.style.display = "none";-->
+<!--            nextImage.style.display = "block";-->
+<!--            currentIndex = nextIndex;-->
+<!--        }-->
+<!--        // Set an interval to call the cycleImages function every 3 seconds-->
+<!--        setInterval(cycleImages, 250);-->
+<!--        });-->
+<!--  </script>-->
+
+  <div class="container" id="loading">
+    <div class="yellow"></div>
+    <div class="red"></div>
+    <div class="blue"></div>
+    <div class="violet"></div>
   </div>
-  <!-- Header -->
-  <header class="header">
-    <div class="header-container d-flex align-items-center justify-content-between">
-      <div class="header-start d-flex gap-5 align-items-center">
-        <img class="logo" src="assets/img/logo.png" alt="">
-        <div class="placeholder placeholder-wide"></div>
-        <div class="d-flex align-items-center gap-4">
-          <div class="placeholder"></div>
-          <div class="placeholder"></div>
-          <div class="placeholder"></div>
-          <div class="placeholder"></div>
-        </div>
-      </div>
-      <div class="header-end d-flex align-items-center gap-5">
-        <div class="placeholder"></div>
-        <div class="d-flex align-items-center gap-4">
-          <div class="placeholder"></div>
-          <img src="assets/img/icon-1.svg" class="svg" alt="">
-          <img src="assets/img/icon-2.svg" class="svg" alt="">
-          <img src="assets/img/icon-3.svg" class="svg" alt="">
-          <img src="assets/img/icon-4.svg" class="svg" alt="">
-        </div>
-      </div>
-    </div>
-  </header>
-  <!-- Script Goes Here -->
   <script>
-        document.addEventListener("DOMContentLoaded", function () {
-        var images = document.querySelectorAll(".animation-image");
-        var currentIndex = 0;
-        function cycleImages() {
-            var currentImage = images[currentIndex];
-            var nextIndex = (currentIndex + 1) % images.length;
-            var nextImage = images[nextIndex];
-            currentImage.style.display = "none";
-            nextImage.style.display = "block";
-            currentIndex = nextIndex;
+    window.addEventListener('load', function(ev) {
+      var loading = document.querySelector('#loading');
+      // Download main.dart.js
+      _flutter.loader.loadEntrypoint({
+        serviceWorker: {
+          serviceWorkerVersion: serviceWorkerVersion,
+        },
+        onEntrypointLoaded: function(engineInitializer) {
+          engineInitializer.initializeEngine().then(function(appRunner) {
+            loading.remove();
+            appRunner.runApp();
+          });
         }
-        // Set an interval to call the cycleImages function every 3 seconds
-        setInterval(cycleImages, 250);
-        });
+      });
+    });
   </script>
 
   <script>
@@ -151,9 +175,7 @@
       } else {
         console.log("localStorage is not supported in this browser");
       }
-
   </script>
-
   <script>
     document.querySelectorAll("img.svg").forEach(function (img) {
     var imgID = img.getAttribute("id");

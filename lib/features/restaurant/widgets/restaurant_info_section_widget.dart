@@ -28,7 +28,7 @@ class RestaurantInfoSectionWidget extends StatelessWidget {
 
     return SliverAppBar(
       expandedHeight: isDesktop ? 350 : 400,
-      toolbarHeight: isDesktop ? 150 : 100,
+      toolbarHeight: isDesktop ? 150 : 120,
       pinned: true, floating: false, elevation: 0.5,
       backgroundColor: Theme.of(context).cardColor,
       leading: !isDesktop ? IconButton(
